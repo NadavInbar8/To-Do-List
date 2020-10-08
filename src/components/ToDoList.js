@@ -1,18 +1,19 @@
 import React from 'react';
-import Todo from './Todo';
+import Todo from "./Todo";
 
-const TodoList = ({ todos, setTodos, filteredTodos }) => {
+const TodoList = ({ todos, setTodos, filteredTodos, deleteFunction}) => {
+
     return(
         <div className="todo-container">
             <ul className="todo-list">
-                {filteredTodos.map((todo) => (
+            {filteredTodos.map((todo) => (
                     <Todo
                          key={todo.id} 
-                         text={todo.inputText} 
-                         todos={todos} 
-                         todo={todo} 
-                         setTodos={setTodos}/>
-                ))}
+                         text={todo.inputText}
+                         deleteFunction={deleteFunction}
+                    />
+                ))} 
+
             </ul>
         </div>
     )

@@ -1,42 +1,35 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-const Todo = ({ text, todos , setTodos, todo }) => {
 
-    const deleteFunction =() => {
-        setTodos(todos.filter((el) => el.id !== todo.id));
-    };
+const Todo = ({ text, deleteFunction }) => {
+
+    const [isComplete, setIsComplete] = useState(false);
+    
     const completeFunction = () => {
-        setTodos( todos.map( item => {
-            if(item.id === todo.id){
-                return{
-                    ...item, completed: !item.completed
-                }
-            }
-            return item;
-        }))
-    };
-
-    const duplicateFunction = () => {
-        console.log(todo);
-        const newTodo = {inputText: todo.inputText, completed: todo.completed, id: Math.random()*1000};
-        const newTodos = todos.slice();
-        newTodos.push(newTodo);
-        setTodos(newTodos);
-    };
+        setIsComplete(!isComplete);
+    }
 
     return(
-        <div className="todo">
-            <li className={`todo-item ${todo.completed ? "completed" : ""}`}> {text} </li>
-            <button onClick={completeFunction} className="complete-btn">
+        <div className="todo" >
+         <div>
+    <li className={`todo-item ${isComplete ? "completed" : ""}`}>{text}</li>
+         </div>
+         <div className="todo-buttons">
+                <button onClick={completeFunction} className="complete-btn">
                 <li className="fas fa-check"></li>
-            </button>
-            <button onClick={deleteFunction} className="trash-btn">
-                <li className="fas fa-trash"></li>
-            </button>
-            <button onClick={duplicateFunction} className="duplicate-btn">
-            <i class="fas fa-clone"></i>
-            </button>
+                </button>
+                <button  className="duplicate-btn">
+                <i className="fas fa-clone"></i>
+                </button>
+                <button  className="edit-btn">
+                <i className="fas fa-edit"></i>
+                </button>
+                <button onClick={() => deleteFunction(Todo.key)} className="trash-btn">
+                    <li className="fas fa-trash"></li>
+                </button>  
+         </div>
         </div>
     )
 }
 export default Todo;
+

@@ -1,14 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 import Form from "./components/Form";
-import TodoList from './components/ToDoList';
+import TodoList from "./components/TodoList";
 
 function App() {
 
-  const [inputText , setInputText] = useState("");
+  // save the todos in array:
   const [todos, setTodos] = useState([]);
+
+  // input text of each todo:
+  const [inputText, setInputText] = useState("");
+
+  // status if completed to the filter
   const [status , setStatus] = useState("all");
   const [filteredTodos, setFilteredTodos] = useState([]);
+
 
   useEffect(() =>{
     getLocalStorage();
@@ -31,7 +37,8 @@ function App() {
     }
     filterHandler();
     saveLocalStorage();
-  }, [todos, status]);
+  });
+
 
   const saveLocalStorage = () => {
       localStorage.setItem('todos', JSON.stringify(todos));
@@ -47,20 +54,29 @@ function App() {
     }
   }
 
+  const deleteFunction = (id) => {
+    console.log(id);
+  }
+
   return (
     <div className="App">
       <header className="App-header">
-  <h1>React To-Do List</h1>
+        <h1>react todo list v2</h1>
       </header>
-      <Form
-       inputText={inputText}
-       todos={todos}
-       status={status}
-       setTodos= {setTodos}
-       setInputText={setInputText}
-       setStatus={setStatus}
- />
-      <TodoList filteredTodos={filteredTodos} todos={todos} setTodos={setTodos}/>
+      <Form 
+      inputText={inputText}
+      todos={todos}
+      setInputText={setInputText}
+      setTodos={setTodos}
+      />
+      <TodoList 
+      todos={todos}
+      setTodos={setTodos}
+      filteredTodos={filteredTodos}
+      setFilteredTodos={setFilteredTodos}
+      deleteFunction={deleteFunction}
+      />
+
     </div>
   );
 }
