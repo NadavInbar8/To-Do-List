@@ -54,10 +54,6 @@ function App() {
     }
   }
 
-  const deleteFunction = (id) => {
-    console.log(id);
-  }
-
   return (
     <div className="App">
       <header className="App-header">
@@ -74,7 +70,6 @@ function App() {
       setTodos={setTodos}
       filteredTodos={filteredTodos}
       setFilteredTodos={setFilteredTodos}
-      deleteFunction={deleteFunction}
       />
 
     </div>

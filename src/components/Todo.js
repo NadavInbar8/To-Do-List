@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 
 
-const Todo = ({ text, deleteFunction }) => {
+const Todo = (props , { text, deleteFunction }) => {
 
     const [isComplete, setIsComplete] = useState(false);
     
     const completeFunction = () => {
         setIsComplete(!isComplete);
     }
+
 
     return(
         <div className="todo" >
@@ -24,7 +25,7 @@ const Todo = ({ text, deleteFunction }) => {
                 <button  className="edit-btn">
                 <i className="fas fa-edit"></i>
                 </button>
-                <button onClick={() => deleteFunction(Todo.key)} className="trash-btn">
+                <button onClick={deleteFunction} className="trash-btn">
                     <li className="fas fa-trash"></li>
                 </button>  
          </div>
